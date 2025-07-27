@@ -1,0 +1,324 @@
+# This program will assign value to cards, and then shuffle and deal requested amount of cards to player.
+import random
+
+# Initiate/assign cards and deck and player hand
+deck =[]
+hand = []
+
+print("WELCOME TO CARDS")
+
+def card_assign(card):
+    # Hearts
+    if card == 'card1':
+        return ' A Hearts'
+    if card == 'card2':
+        return ' 2 Hearts'
+    if card == 'card3':
+        return ' 3 Hearts'
+    if card == 'card4':
+        return ' 4 Hearts'
+    if card == 'card5':
+        return ' 5 Hearts'
+    if card == 'card6':
+        return ' 6 Hearts'
+    if card == 'card7':
+        return ' 7 Hearts'
+    if card == 'card8':
+        return ' 8 Hearts'
+    if card == 'card9':
+        return ' 9 Hearts'
+    if card == 'card10':
+        return '10 Hearts'
+    if card == 'card11':
+        return 'Ja Hearts'
+    if card == 'card12':
+        return 'Qu Hearts'
+    if card == 'card13':
+        return 'Ki Hearts'        
+
+    # Spades
+    if card == 'card14':
+        return ' A Spades'
+    if card == 'card15':
+        return ' 2 Spades'
+    if card == 'card16':
+        return ' 3 Spades'
+    if card == 'card17':
+        return ' 4 Spades'
+    if card == 'card18':
+        return ' 5 Spades'
+    if card == 'card19':
+        return ' 6 Spades'
+    if card == 'card20':
+        return ' 7 Spades'
+    if card == 'card21':
+        return ' 8 Spades'
+    if card == 'card22':
+        return ' 9 Spades'
+    if card == 'card23':
+        return '10 Spades'
+    if card == 'card24':
+        return 'Ja Spades'
+    if card == 'card25':
+        return 'Qu Spades'
+    if card == 'card26':
+        return 'Ki Spades'
+
+    # Diamonds
+    if card == 'card27':
+        return ' A Diamonds'
+    if card == 'card28':
+        return ' 2 Diamonds'
+    if card == 'card29':
+        return ' 3 Diamonds'
+    if card == 'card30':
+        return ' 4 Diamonds'
+    if card == 'card31':
+        return ' 5 Diamonds'
+    if card == 'card32':
+        return ' 6 Diamonds'
+    if card == 'card33':
+        return ' 7 Diamonds'
+    if card == 'card34':
+        return ' 8 Diamonds'
+    if card == 'card35':
+        return ' 9 Diamonds'
+    if card == 'card36':
+        return '10 Diamonds'
+    if card == 'card37':
+        return 'Ja Diamonds'
+    if card == 'card38':
+        return 'Qu Diamonds'
+    if card == 'card39':
+        return 'Ki Diamonds'
+
+    # Clubs
+    if card == 'card40':
+        return ' A Clubs'
+    if card == 'card41':
+        return ' 2 Clubs'
+    if card == 'card42':
+        return ' 3 Clubs'
+    if card == 'card43':
+        return ' 4 Clubs'
+    if card == 'card44':
+        return ' 5 Clubs'
+    if card == 'card45':
+        return ' 6 Clubs'
+    if card == 'card46':
+        return ' 7 Clubs'
+    if card == 'card47':
+        return ' 8 Clubs'
+    if card == 'card48':
+        return ' 9 Clubs'
+    if card == 'card49':
+        return '10 Clubs'
+    if card == 'card50':
+        return 'Ja Clubs'
+    if card == 'card51':
+        return 'Qu Clubs'
+    if card == 'card52':
+        return 'Ki Clubs'
+        
+for items in range(0,52):
+    cards = items + 1
+    current = "card" + str(cards)
+    current = card_assign(current)
+    deck.append(current)
+
+
+# FUNCTION Shuffle deck
+choice =''
+
+def shuffle_deck(deck):
+    new_deck = []
+    for items in deck:
+        new_deck.append(items)
+        
+    random.shuffle(new_deck)
+    return new_deck
+
+# FUNCTION Deal # cards and assign value
+
+def deal_cards(deck, num, hand):
+    points = 0
+    total = 0
+   
+    item = ''
+    for items in range(0, int(num)):
+            item = deck.pop(0)
+            points = card_value(item)          
+            hand.append(item)
+            total += points
+            
+    return total
+
+def card_value(card):
+    if card[1] == 'A':
+        return 1
+    if card[1] == '2':
+        return 2
+    if card[1] == '3':
+        return 3
+    if card[1] == '4':
+        return 4
+    if card[1] == '5':
+        return 5
+    if card[1] == '6':
+        return 6
+    if card[1] == '7':
+        return 7
+    if card[1] == '8':
+        return 8
+    if card[1] == '9':
+        return 9
+    else:
+        return 10
+
+# Black Jack
+
+def blackjack(deck, hand):
+    
+    points_from_hand = 0
+    num_hand = len(hand)
+    score = 0
+    input("Press Enter to continue...\n")
+    print("* * * * * * * * * * * * * * * *\n"
+          "*###  #      #     ###  #   # *\n"
+          "*#  # #     # #   #     #  #  *\n"
+          "*###  #    #   #  #     ###   *\n"
+          "*#  # #    #   #  #     #  #  *\n"
+          "*#### #### #   #   ###  #   # *\n"
+          "* * * * * * * * * * * * * * * *\n"
+          "*    #     #     ###  #   #   *\n"
+          "*    #    # #   #     #  #    *\n"
+          "*    #   #   #  #     ###     *\n"
+          "* #  #   #   #  #     #  #    *\n"
+          "*  ##    #   #   ###  #   #   *\n"
+          "* * * * * * * * * * * * * * * *\n")
+    choice = ''
+    while choice != '4':
+        print("Welcome to Black Jack!")
+        choice = input("Enter a selection:\n"
+                       "1) Play Black Jack!\n"
+                       "2) Read the rules.\n"
+                       "3) Shuffle the deck.\n"
+                       "4) Return to the previous menu.\n\n"
+                       "Selection: ")
+        if choice == '1':
+            
+
+            # Printing deck and hand for debug purposes
+            '''
+            print("Deck of cards:")
+            for i in range(0, len(deck)):
+                print(deck[i])
+            print("Your hand:")
+            print(hand)
+            input("Press Enter to continue...\n")
+            '''
+            #Black Jack gameloop
+            game = 'y'
+            print("Playing Black Jack\n")
+            print("You receive two cards from the dealer.")
+            points_from_hand += deal_cards(deck, '2', hand)
+            num_hand += num_hand
+            score += points_from_hand
+            points_from_hand = 0
+            
+            
+            while game == 'y':
+                
+
+                print("What would you like to do next?")
+                move = input("1) STAY\n"
+                             "2) HIT\n"
+                             "3) VIEW HAND & SCORE\n"
+                             "4) RETURN TO BLACK JACK MENU\n\n"
+                             "SELECTION: ")
+
+                if move == '1':
+                    pass
+
+                elif move == '2':
+                    print("You receive one card from the dealer.\n")
+                    points_from_hand += deal_cards(deck, '1', hand)
+                    num_hand += num_hand
+                    score += points_from_hand
+                    points_from_hand = 0
+                
+                elif move == '3':
+                    print("\nVIEW HAND AND SCORE")
+                    print(hand)
+                    print('\nTotal points: ' + str(score))
+                    input("Press Enter to continue...\n")
+                    
+                elif move == '4':
+                    item = ''
+                    for items in range(0,len(hand)):
+                        item = hand.pop(0)
+                        deck.append(item)
+                    score = 0
+                    print("\nReturning to the Black Jack main menu.")
+                    input("Press Enter to continue...\n")
+                    game = 'n'
+                    
+                else:
+                    print('\nPlease enter a valid choice.\n')
+                    input("Press Enter to continue...\n")
+                
+                    print()
+                
+
+        elif choice == '2':
+            print("\nRules to Black Jack\n"
+                "1. You're goal is to get a score of 21.\n"
+                "2. The dealer will deal you two cards to begin.\n"
+                "3. Determine if you want to STAY or HIT.\n"
+                "STAY - Challenge the dealer with current hand.\n"
+                "HIT - Receive another card from the dealer.\n"
+                "If you go over 21 points, you lose.\n")
+            input("Press Enter to continue...\n")
+                
+                
+        elif choice == '3':
+            print("\nShuffling the deck...")
+            input("Press Enter to continue...\n")
+            deck = shuffle_deck(deck)
+
+        elif choice == '4':
+            print("\nReturning to the main menu.")
+            input("Press Enter to continue...\n")
+            return
+
+        else:
+            print('\nPlease enter a valid choice.\n')
+            input("Press Enter to continue...\n")
+            
+
+# Program loop
+while choice != '3':
+    choice = input("\nEnter a selection:\n"
+                   "1) Black Jack\n"
+                   "2) Shuffle the deck\n"
+                   "3) Quit program\n\n"
+                   "Selection: ")
+    
+    if choice == '1':
+        print("\nLoading Black Jack...")
+        blackjack(deck, hand)
+        
+        
+
+    elif choice == '2':
+        print("\nShuffling the deck...")
+        input("Press Enter to continue...\n")
+        deck = shuffle_deck(deck)
+
+    elif choice == '3':
+        print("\nEnding program...")
+        quit()
+
+    else:
+        print('\nPlease enter a valid choice.')
+        input("Press Enter to continue...\n")
