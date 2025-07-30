@@ -4,6 +4,7 @@ import random
 # Initiate/assign cards and deck and player hand
 deck =[]
 hand = []
+dealer = []
 
 print("WELCOME TO CARDS")
 
@@ -145,12 +146,12 @@ def deal_cards(deck, num, hand):
     total = 0
    
     item = ''
-    for items in range(0, int(num)):
+    for items in range(0, int(num)): 
             item = deck.pop(0)
             points = card_value(item)          
             hand.append(item)
             total += points
-            
+
     return total
 
 def card_value(card):
@@ -177,23 +178,26 @@ def card_value(card):
 
 # Black Jack
 
-def blackjack(deck, hand):
+def blackjack(deck, hand, dealer):
     
     points_from_hand = 0
     num_hand = len(hand)
-    score = 0
+    num_dealer = len(dealer)
+    player_score = 0
+    dealer_score = 0
+    
     input("Press Enter to continue...\n")
     print("* * * * * * * * * * * * * * * *\n"
           "*###  #      #     ###  #   # *\n"
           "*#  # #     # #   #     #  #  *\n"
           "*###  #    #   #  #     ###   *\n"
-          "*#  # #    #   #  #     #  #  *\n"
-          "*#### #### #   #   ###  #   # *\n"
+          "*#  # #    #####  #     #  #  *\n"
+          "*###  #### #   #   ###  #   # *\n"
           "* * * * * * * * * * * * * * * *\n"
           "*    #     #     ###  #   #   *\n"
           "*    #    # #   #     #  #    *\n"
           "*    #   #   #  #     ###     *\n"
-          "* #  #   #   #  #     #  #    *\n"
+          "* #  #   #####  #     #  #    *\n"
           "*  ##    #   #   ###  #   #   *\n"
           "* * * * * * * * * * * * * * * *\n")
     choice = ''
@@ -209,22 +213,32 @@ def blackjack(deck, hand):
             
 
             # Printing deck and hand for debug purposes
-            '''
+            
             print("Deck of cards:")
             for i in range(0, len(deck)):
                 print(deck[i])
             print("Your hand:")
             print(hand)
+            print("The dealer's hand:")
+            print(dealer)
             input("Press Enter to continue...\n")
-            '''
+            
+            
             #Black Jack gameloop
             game = 'y'
             print("Playing Black Jack\n")
             print("You receive two cards from the dealer.")
             points_from_hand += deal_cards(deck, '2', hand)
             num_hand += num_hand
-            score += points_from_hand
+            player_score += points_from_hand
             points_from_hand = 0
+            
+            print("The dealer receives two cards placed facedown.\n")
+            points_from_hand += deal_cards(deck, '2', dealer)
+            num_dealer += num_dealer
+            dealer_score += points_from_hand
+            points_from_hand = 0
+            
             
             
             while game == 'y':
@@ -233,7 +247,7 @@ def blackjack(deck, hand):
                 print("What would you like to do next?")
                 move = input("1) STAY\n"
                              "2) HIT\n"
-                             "3) VIEW HAND & SCORE\n"
+                             "3) VIEW TABLE\n"
                              "4) RETURN TO BLACK JACK MENU\n\n"
                              "SELECTION: ")
 
@@ -248,9 +262,11 @@ def blackjack(deck, hand):
                     points_from_hand = 0
                 
                 elif move == '3':
-                    print("\nVIEW HAND AND SCORE")
+                    print("\nVIEW TABLE")
                     print(hand)
-                    print('\nTotal points: ' + str(score))
+                    print('\nTotal points: ' + str(player_score))
+                    print('The dealer currently holds two cards\n'
+                          'with a score of ' + str(dealer_score) + '.')
                     input("Press Enter to continue...\n")
                     
                 elif move == '4':
@@ -258,7 +274,11 @@ def blackjack(deck, hand):
                     for items in range(0,len(hand)):
                         item = hand.pop(0)
                         deck.append(item)
-                    score = 0
+                    for items in range(0,len(dealer)):
+                        item = dealer.pop(0)
+                        deck.append(item)
+                    player_score = 0
+                    dealer_score = 0
                     print("\nReturning to the Black Jack main menu.")
                     input("Press Enter to continue...\n")
                     game = 'n'
@@ -306,7 +326,7 @@ while choice != '3':
     
     if choice == '1':
         print("\nLoading Black Jack...")
-        blackjack(deck, hand)
+        blackjack(deck, hand, dealer)
         
         
 
