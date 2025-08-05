@@ -127,6 +127,7 @@ for items in range(0,52):
     current = "card" + str(cards)
     current = card_assign(current)
     deck.append(current)
+    random.shuffle(deck)
   
 
 # FUNCTION Shuffle deck
@@ -139,7 +140,7 @@ def shuffle_deck():
         current = card_assign(current)
         new_deck.append(current)
 
-    random.shuffle(new_deck)
+    
     return new_deck
 
 # FUNCTION Deal # cards and score
@@ -342,7 +343,6 @@ def resetgame(hand, dealer):
         item = dealer.pop(0)
         deck.append(item)
         
-    print(deck)
     p_score = 0
     d_score = 0
 
@@ -466,14 +466,14 @@ def blackjack(deck, hand, dealer):
                 input("Press Enter to continue...\n")
                     
                 print("What would you like to do next?")
-                move = input("Cards remaining: " + str(len(deck)) + '\n'
-                    "1) HIT - RECIEVE ANOTHER CARD\n"
+                move = input("1) HIT - RECIEVE ANOTHER CARD\n"
                                      "2) STAY - CHALLENGE THE DEALER\n"
                                      "3) RETURN TO BLACK JACK MENU\n\n"
                                      "SELECTION: ")
                 # HIT
                 if move == '1':
                         
+
                     player_score += players_move(deck, hand)
                     
                     print("You receive one card from the dealer:")
@@ -527,6 +527,7 @@ def blackjack(deck, hand, dealer):
                         player_score, dealer_score = (resetgame(hand, dealer))
                         game = 'n'
                         
+
                             
                     else:
                         print("The dealer loses with a hand of " + str(dealer_score) + '.')
@@ -536,6 +537,7 @@ def blackjack(deck, hand, dealer):
                         player_score, dealer_score = (resetgame(hand, dealer))
                         game = 'n'
                         
+
                 elif move == '3':
                         
                     print("\nReturning to the Black Jack main menu.")
@@ -544,12 +546,14 @@ def blackjack(deck, hand, dealer):
                     player_score, dealer_score = (resetgame(hand, dealer))
                     game = 'n'
                         
+                        
                 else:
                     print('\nPlease enter a valid choice.\n')
                     input("Press Enter to continue...\n")
                     
                     print()
                     
+
         elif choice == '2':
             print("\nRules to Black Jack\n"
                 "1. You're goal is to get a score of 21.\n"
