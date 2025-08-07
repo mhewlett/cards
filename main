@@ -556,13 +556,12 @@ def blackjack(deck, hand, dealer):
 
         elif choice == '2':
             print("\nRules to Black Jack\n"
-                "1. You're goal is to get a score of 21.\n"
+                "1. Your goal is to get a score close to 21 without going over.\n"
                 "2. The dealer will deal you two cards to begin.\n"
-                "3. Determine if you want to HIT or STAY.\n"
+                "3. Determine if you want to HIT or STAY in order \nto finish with a higher score than the dealer.\n\n"
                 "HIT - Receive another card from the dealer.\n"
-                "STAY - Challenge the dealer with current hand.\n"
+                "STAY - Challenge the dealer with current hand.\n")
                 
-                "If you go over 21 points, you lose.\n")
             input("Press Enter to continue...\n")
                 
                 
