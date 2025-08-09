@@ -139,6 +139,7 @@ def shuffle_deck():
         current = "card" + str(cards)
         current = card_assign(current)
         new_deck.append(current)
+        random.shuffle(new_deck)
 
     
     return new_deck
